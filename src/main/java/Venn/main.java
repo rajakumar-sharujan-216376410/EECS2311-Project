@@ -3,7 +3,7 @@ package Venn;
 public class main {
 	
 	public static void firstPrint(){
-		System.out.println("Hey");
+		System.out.println("ok");
 	} 
 	
 	public static void secondPrint(){
