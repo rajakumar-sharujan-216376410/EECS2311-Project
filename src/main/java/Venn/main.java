@@ -39,11 +39,9 @@ public class main extends JFrame {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-<<<<<<< HEAD
-		g.setColor(Color.gray);
-=======
+
 		g.setColor(Color.BLACK);
->>>>>>> refs/remotes/origin/AhmedB2
+
 		g.drawOval(cX - r, cY - r, r * 2, r * 2);
 	}
 
