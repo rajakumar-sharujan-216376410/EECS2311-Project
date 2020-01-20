@@ -39,7 +39,7 @@ public class main extends JFrame {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.setColor(Color.yellow);
+		g.setColor(Color.BLUE);
 		g.drawOval(cX - r, cY - r, r * 2, r * 2);
 	}
 
