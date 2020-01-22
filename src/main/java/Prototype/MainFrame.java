@@ -70,8 +70,8 @@ public class MainFrame extends JFrame implements ActionListener {
 		text.moveCaretPosition(10); 
 		object.add(text);
 		
-	//	Menu menu1 = new Menu();
-	//	panel.add(menu1);
+		Menu menu1 = new Menu();
+		object.addMenu(this); 
 	}
 	
 	//This method is run once a button is clicked
@@ -81,8 +81,8 @@ public class MainFrame extends JFrame implements ActionListener {
 			
 			//Shows the drawing
 			object.setVisible(true);
-			object.addInput();
-
+			object.addInput();	
+			
 		}
 		//Action for Hide button
 		else if (e.getSource() == hide) {
