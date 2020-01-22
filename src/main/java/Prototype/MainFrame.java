@@ -37,9 +37,9 @@ public class MainFrame extends JFrame implements ActionListener {
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		//Creates show & hide buttons
-		show = new JButton("Show");
+		show = new JButton("Add inputs");
 		hide = new JButton("Hide");
-		newCircle = new JButton("new Circle");
+		newCircle = new JButton("Create the diagram");
 		
 		//Adds the button click Listener
 		show.addActionListener(this);
@@ -70,8 +70,8 @@ public class MainFrame extends JFrame implements ActionListener {
 		text.moveCaretPosition(10); 
 		object.add(text);
 		
-		Menu menu1 = new Menu();
-		panel.add(menu1);
+	//	Menu menu1 = new Menu();
+	//	panel.add(menu1);
 	}
 	
 	//This method is run once a button is clicked
@@ -81,6 +81,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			
 			//Shows the drawing
 			object.setVisible(true);
+			object.addInput();
 
 		}
 		//Action for Hide button
