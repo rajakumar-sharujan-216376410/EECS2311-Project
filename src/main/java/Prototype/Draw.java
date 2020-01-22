@@ -26,10 +26,10 @@ public class Draw extends JPanel {
 		super.paintComponent(g);
 		//Sets the settings for the Venn Diagram
 		
-		g.setColor(Color.RED);
-		g.drawOval(50, 100, xPos, yPos);
-		g.setColor(Color.GREEN);
-		g.drawOval(distance, 100, xPos, yPos);
+		g.setColor(new Color(255, 0, 0, 125));
+		g.fillOval(50, 100, xPos, yPos);
+		g.setColor(new Color(255, 0, 0, 125));
+		g.fillOval(distance, 100, xPos, yPos);
 		//g.setComposite(makeComposite((float) 0.75)); 
 	}
 	
@@ -60,5 +60,6 @@ public class Draw extends JPanel {
 		xPos = Integer.parseInt(user);
 		yPos = Integer.parseInt(user2);
 		distance = Integer.parseInt(user3);
+		
 	}
 }

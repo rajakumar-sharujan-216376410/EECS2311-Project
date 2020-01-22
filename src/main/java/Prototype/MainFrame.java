@@ -24,6 +24,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JButton hide;
 	private JButton newCircle;
 	private Draw object;
+	int counter = 0;
 	
 	public MainFrame() {
 		//Creates empty JFrame window with the name 'Venn App'
@@ -81,7 +82,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			
 			//Shows the drawing
 			object.setVisible(true);
-			object.addInput();	
+			object.addInput();		
 			
 		}
 		//Action for Hide button
