@@ -20,11 +20,11 @@ import java.awt.event.*;
 public class MainFrame extends JFrame implements ActionListener {
 	
 	private JPanel panel;
-	private JButton show;
+	private JButton addInputs;
 	private JButton hide;
-	private JButton newCircle;
+	private JButton createDiagram;
 	private Draw object;
-	int counter = 0;
+	protected int counter = 0;
 	
 	public MainFrame() {
 		//Creates empty JFrame window with the name 'Venn App'
@@ -38,14 +38,14 @@ public class MainFrame extends JFrame implements ActionListener {
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		//Creates show & hide buttons
-		show = new JButton("Add inputs");
+		addInputs = new JButton("Add inputs");
 		hide = new JButton("Hide");
-		newCircle = new JButton("Create the diagram");
+		createDiagram = new JButton("Create the diagram");
 		
 		//Adds the button click Listener
-		show.addActionListener(this);
+		addInputs.addActionListener(this);
 		hide.addActionListener(this);
-		newCircle.addActionListener(this); 
+		createDiagram.addActionListener(this); 
 
 		//Sets the settings for the window 
 		setSize(600, 500);
@@ -56,9 +56,9 @@ public class MainFrame extends JFrame implements ActionListener {
 		object = new Draw();
 		
 		//adds the Components 
-		panel.add(show);
+		panel.add(addInputs);
 		panel.add(hide);
-		panel.add(newCircle);
+		panel.add(createDiagram);
 		add(panel, BorderLayout.WEST);
 		add(object, BorderLayout.CENTER);
 		
@@ -71,16 +71,16 @@ public class MainFrame extends JFrame implements ActionListener {
 		text.moveCaretPosition(10); 
 		object.add(text);
 		
-		Menu menu1 = new Menu();
 		object.addMenu(this); 
 	}
 	
 	//This method is run once a button is clicked
 	public void actionPerformed (ActionEvent e) {
 		//Action for Show Button
-		if (e.getSource() == show){
+		if (e.getSource() == addInputs){
 			
 			//Shows the drawing
+			counter++;
 			object.setVisible(true);
 			object.addInput();		
 			
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame implements ActionListener {
 			//Hides the drawing 
 			object.setVisible(false);
 		}
-		else if (e.getSource() == newCircle) {
+		else if (e.getSource() == createDiagram) {
 			
 			object.drawing();
 		}

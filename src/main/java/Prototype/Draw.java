@@ -16,21 +16,16 @@ public class Draw extends JPanel {
 		//Draws the two circles
 		repaint();
 	}
-
-	public AlphaComposite makeComposite(float alpha) {
-		int type = AlphaComposite.SRC_OVER;
-		return AlphaComposite.getInstance(type, alpha);
-	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		//Sets the settings for the Venn Diagram
 		
-		g.setColor(new Color(255, 0, 0, 125));
+		g.setColor(new Color(0, 150, 255, 125));
 		g.fillOval(50, 100, xPos, yPos);
-		g.setColor(new Color(255, 0, 0, 125));
-		g.fillOval(distance, 100, xPos, yPos);
-		//g.setComposite(makeComposite((float) 0.75)); 
+		g.setColor(new Color(0, 150, 255, 125));
+		g.fillOval(distance, 100, xPos, yPos);	
+	
 	}
 	
 	public void addMenu(MainFrame f) {
