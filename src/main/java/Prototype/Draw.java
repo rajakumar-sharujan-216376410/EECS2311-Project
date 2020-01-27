@@ -17,7 +17,6 @@ public class Draw extends JPanel{
 		g.drawOval(50, 100, 250, 250);
 		g.setColor(Color.GREEN);
 		g.drawOval(175, 100, 250, 250);
-		// Testing branch
 	}
 
 }
