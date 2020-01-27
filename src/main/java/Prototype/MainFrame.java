@@ -1,24 +1,35 @@
 package Prototype;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Label;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.*;
 
 //Creates the frame for the application
 public class MainFrame extends JFrame implements ActionListener {
 	
 	private JPanel panel;
-	private JButton show;
+	private JButton addInputs;
 	private JButton hide;
+	private JButton createDiagram;
 	private Draw object;
+	protected int counter = 0;
 	
-	public MainFrame(){
+	public MainFrame() {
 		//Creates empty JFrame window with the name 'Venn App'
 		super("Venn App");
-		
+
 		//Sets the Layout to Border Layout style
 		setLayout(new BorderLayout());
 		
@@ -27,12 +38,14 @@ public class MainFrame extends JFrame implements ActionListener {
 		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 		
 		//Creates show & hide buttons
-		show = new JButton("Show");
+		addInputs = new JButton("Add inputs");
 		hide = new JButton("Hide");
+		createDiagram = new JButton("Create the diagram");
 		
 		//Adds the button click Listener
-		show.addActionListener(this);
+		addInputs.addActionListener(this);
 		hide.addActionListener(this);
+		createDiagram.addActionListener(this); 
 
 		//Sets the settings for the window 
 		setSize(600, 500);
@@ -43,31 +56,44 @@ public class MainFrame extends JFrame implements ActionListener {
 		object = new Draw();
 		
 		//adds the Components 
-		panel.add(show);
+		panel.add(addInputs);
 		panel.add(hide);
+		panel.add(createDiagram);
 		add(panel, BorderLayout.WEST);
 		add(object, BorderLayout.CENTER);
 		
 		//Draws the two circles and hides the Venn diagram
 		object.drawing();
 		object.setVisible(false);
+		
+		JTextField text = new JTextField(6);
+		text.setText("Similarities");
+		text.moveCaretPosition(10); 
+		object.add(text);
+		
+		object.addMenu(this); 
 	}
 	
 	//This method is run once a button is clicked
-	public void actionPerformed (ActionEvent e){
+	public void actionPerformed (ActionEvent e) {
 		//Action for Show Button
-		if (e.getSource() == show){
+		if (e.getSource() == addInputs){
 			
 			//Shows the drawing
+			counter++;
 			object.setVisible(true);
+			object.addInput();		
+			
 		}
 		//Action for Hide button
-		else if (e.getSource() == hide){
+		else if (e.getSource() == hide) {
 			
 			//Hides the drawing 
 			object.setVisible(false);
 		}
+		else if (e.getSource() == createDiagram) {
+			
+			object.drawing();
+		}
 	}
-	
-	
 }
