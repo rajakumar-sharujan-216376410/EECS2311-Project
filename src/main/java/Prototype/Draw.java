@@ -5,6 +5,7 @@ import javax.swing.*;
 import Prototype.Menu;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 public class Draw extends JPanel {
@@ -21,11 +22,16 @@ public class Draw extends JPanel {
 		super.paintComponent(g);
 		//Sets the settings for the Venn Diagram
 		
-		g.setColor(new Color(0, 150, 255, 125));
+		g.setColor(new Color(0, 150, 255, 150));
 		g.fillOval(50, 100, xPos, yPos);
-		g.setColor(new Color(0, 150, 255, 125));
+		g.setColor(new Color(255, 0, 0, 150));
 		g.fillOval(distance, 100, xPos, yPos);	
 	
+	}
+	
+	public void addTextBox() {
+		JTextField text = new JTextField(20);
+		text.setText("hello"); 
 	}
 	
 	public void addMenu(MainFrame f) {
