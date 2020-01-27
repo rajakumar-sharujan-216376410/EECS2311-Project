@@ -5,6 +5,7 @@ import javax.swing.*;
 import Prototype.Menu;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
@@ -12,6 +13,10 @@ public class Draw extends JPanel {
 	
 	private int xPos, yPos, distance;
 	private String user, user2, user3;
+	Menu m = new Menu();
+	JMenuBar mb; // MenuBar
+	JMenu x; // JMenu
+	JMenuItem m1, m2, m3, m4; // MenuItems
 	
 	public void drawing() {
 		//Draws the two circles
@@ -35,10 +40,6 @@ public class Draw extends JPanel {
 	}
 	
 	public void addMenu(MainFrame f) {
-		Menu m = new Menu();
-		JMenuBar mb; // MenuBar
-		JMenu x; // JMenu
-		JMenuItem m1, m2, m3, m4; // MenuItems
 		
 		mb = new JMenuBar();
 		x = new JMenu("Menu"); 
@@ -59,7 +60,27 @@ public class Draw extends JPanel {
 		f.setJMenuBar(mb);
 		f.setSize(500, 500);
 		f.setVisible(true);
+		
 	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == m1) { //new
+			System.out.println("NEW. CHECK");
+		}
+		if (e.getSource() == m2) { //insert
+			System.out.println("INSERT. CHECK");
+		}
+		if (e.getSource() == m3) { //save
+			System.out.println("SAVE. CHECK");
+		}
+		if (e.getSource() == m4) { //save as
+			System.out.println("SAVE AS. CHECK");
+		}
+
+	}
+	
+	
+	
 	
 	public void addInput() {
 	

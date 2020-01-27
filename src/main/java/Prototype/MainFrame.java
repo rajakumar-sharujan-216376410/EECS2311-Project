@@ -14,6 +14,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.SwingUtilities;
+import javax.swing.filechooser.*;
+
 import java.awt.event.*;
 
 //Creates the frame for the application
@@ -24,8 +31,14 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JButton addInputs;
 	private JButton hide;
 	private JButton createDiagram;
+	private JButton openFile;
 	private Draw object;
 	protected int counter = 0;
+	static private final String newline = "\n";
+    JButton openButton, saveButton;
+    JTextArea log;
+    JFileChooser fc;
+    
 	
 	public MainFrame() {
 		//Creates empty JFrame window with the name 'Venn App'
@@ -43,10 +56,22 @@ public class MainFrame extends JFrame implements ActionListener {
 		hide = new JButton("Hide");
 		createDiagram = new JButton("Create the diagram");
 		
+		//Creates open file button
+		openFile = new JButton("Open");
+		
 		//Adds the button click Listener
 		addInputs.addActionListener(this);
 		hide.addActionListener(this);
 		createDiagram.addActionListener(this); 
+		openFile.addActionListener(this);
+		
+		//Setting for opening files
+		
+		log = new JTextArea(5,20);
+        log.setMargin(new Insets(5,5,5,5));
+        log.setEditable(false);
+        JScrollPane logScrollPane = new JScrollPane(log);
+        fc = new JFileChooser();
 
 		//Sets the settings for the window 
 		setSize(600, 500);
@@ -60,6 +85,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		panel.add(addInputs);
 		panel.add(hide);
 		panel.add(createDiagram);
+		panel.add(openFile);
 		add(panel, BorderLayout.WEST);
 		add(object, BorderLayout.CENTER);
 		
@@ -95,6 +121,18 @@ public class MainFrame extends JFrame implements ActionListener {
 		else if (e.getSource() == createDiagram) {
 			
 			object.drawing();
+		}
+		else if(e.getSource() == openFile) {
+			int returnVal = fc.showOpenDialog(MainFrame.this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                //This is where a real application would open the file.
+                log.append("Opening: " + file.getName() + "." + newline);
+            } else {
+                log.append("Open command cancelled by user." + newline);
+            }
+            log.setCaretPosition(log.getDocument().getLength());
 		}
 	}
 }

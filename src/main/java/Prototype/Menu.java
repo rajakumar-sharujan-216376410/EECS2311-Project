@@ -19,12 +19,12 @@ public class Menu extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		f = new JFrame();
 		mb = new JMenuBar();
-<<<<<<< HEAD
+
 		x = new JMenu("Menu"); 
 		
 		m1 = new JMenuItem("Insert");
 		m1.addActionListener(m); 
-=======
+
 		x = new JMenu("Menu");
 
 		m1 = new JMenuItem("New");
@@ -35,7 +35,7 @@ public class Menu extends JFrame implements ActionListener {
 		m2.addActionListener(m);
 		m3.addActionListener(m);
 		m4.addActionListener(m);
->>>>>>> refs/remotes/origin/Develop
+
 		x.add(m1);
 		x.add(m2);
 		x.add(m3);
@@ -49,11 +49,7 @@ public class Menu extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == m1) {
-<<<<<<< HEAD
-			object.addTextBox();
-=======
 
->>>>>>> refs/remotes/origin/Develop
 		}
 		if (e.getSource() == m2) {
 
