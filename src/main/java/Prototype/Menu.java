@@ -15,12 +15,12 @@ public class Menu extends JFrame implements ActionListener {
 	static JMenuItem m1, m2, m3, m4; // MenuItems
 	static JFrame f;
 	private Draw object;
-	
+
 	public static void main(String[] args) {
 		f = new JFrame();
 		mb = new JMenuBar();
-		x = new JMenu("Menu"); 
-		
+		x = new JMenu("Menu");
+
 		m1 = new JMenuItem("New");
 		m2 = new JMenuItem("Insert");
 		m3 = new JMenuItem("Save");
@@ -42,8 +42,18 @@ public class Menu extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == m1) {
-			
+
 		}
+		if (e.getSource() == m2) {
+
+		}
+		if (e.getSource() == m3) {
+
+		}
+		if (e.getSource() == m4) {
+
+		}
+
 	}
-	
+
 }
