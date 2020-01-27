@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import java.awt.event.*;
 
 //Creates the frame for the application
+	
 public class MainFrame extends JFrame implements ActionListener {
 	
 	private JPanel panel;
@@ -97,3 +98,4 @@ public class MainFrame extends JFrame implements ActionListener {
 		}
 	}
 }
+
