@@ -14,6 +14,7 @@ public class Menu extends JFrame implements ActionListener {
 	static JMenu x; // JMenu
 	static JMenuItem m1; // MenuItems
 	static JFrame f;
+	private Draw object;
 	
 	public static void main(String[] args) {
 		f = new JFrame();
@@ -31,7 +32,9 @@ public class Menu extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		if (e.getSource() == m1) {
+			
+		}
 	}
 	
 }
