@@ -39,13 +39,10 @@ public class main extends JFrame {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-<<<<<<< HEAD
+
 		g.setColor(Color.yellow);
-=======
 
-		g.setColor(Color.BLACK);
-
->>>>>>> branch 'master' of https://github.com/Ballen-Alain-216341703/EECS2311-Project.git
+	
 		g.drawOval(cX - r, cY - r, r * 2, r * 2);
 	}
 
