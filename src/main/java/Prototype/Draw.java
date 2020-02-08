@@ -9,6 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Scanner;
 
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.filechooser.*;
+
 public class Draw extends JPanel {
 	
 	private int xPos, yPos, distance;
@@ -17,6 +23,11 @@ public class Draw extends JPanel {
 	JMenuBar mb; // MenuBar
 	JMenu x; // JMenu
 	JMenuItem m1, m2, m3, m4; // MenuItems
+	
+	static private final String newline = "\n";
+	JButton openButton, saveButton;
+	JTextArea log;
+	JFileChooser fc;
 	
 	public void drawing() {
 		//Draws the two circles
@@ -45,7 +56,7 @@ public class Draw extends JPanel {
 		x = new JMenu("Menu"); 
 		
 		m1 = new JMenuItem("New");
-		m2 = new JMenuItem("Insert");
+		m2 = new JMenuItem("Open");
 		m3 = new JMenuItem("Save");
 		m4 = new JMenuItem("Save as");
 		m1.addActionListener(m);
@@ -63,12 +74,30 @@ public class Draw extends JPanel {
 		
 	}
 	
+	public void openFiles() {
+		
+				log = new JTextArea(5,20);
+		        log.setMargin(new Insets(5,5,5,5));
+		        log.setEditable(false);
+		        JScrollPane logScrollPane = new JScrollPane(log);
+		        fc = new JFileChooser();
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == m1) { //new
 			System.out.println("NEW. CHECK");
 		}
-		if (e.getSource() == m2) { //insert
-			System.out.println("INSERT. CHECK");
+		if (e.getSource() == m2) { //Open
+			int returnVal = fc.showOpenDialog(Draw.this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                //This is where a real application would open the file.
+                log.append("Opening: " + file.getName() + "." + newline);
+            } else {
+                log.append("Open command cancelled by user." + newline);
+            }
+            log.setCaretPosition(log.getDocument().getLength());
 		}
 		if (e.getSource() == m3) { //save
 			System.out.println("SAVE. CHECK");

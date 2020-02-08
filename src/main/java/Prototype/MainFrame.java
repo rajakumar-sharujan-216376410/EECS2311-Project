@@ -24,9 +24,9 @@ import javax.swing.filechooser.*;
 import java.awt.event.*;
 
 //Creates the frame for the application
-	
+
 public class MainFrame extends JFrame implements ActionListener {
-	
+
 	private JPanel panel;
 	private JButton addInputs;
 	private JButton hide;
@@ -34,106 +34,116 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JButton openFile;
 	private Draw object;
 	protected int counter = 0;
+
 	static private final String newline = "\n";
-    JButton openButton, saveButton;
-    JTextArea log;
-    JFileChooser fc;
-    
-	
+	JButton saveButton;
+	JTextArea log;
+	JFileChooser fc;
+
 	public MainFrame() {
-		//Creates empty JFrame window with the name 'Venn App'
+		// Creates empty JFrame window with the name 'Venn App'
 		super("Venn App");
 
-		//Sets the Layout to Border Layout style
+		// Sets the Layout to Border Layout style
 		setLayout(new BorderLayout());
-		
-		//Creates panel
+
+		// Creates panel
 		panel = new JPanel();
-		panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
-		
-		//Creates show & hide buttons
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+		// Creates show & hide buttons
 		addInputs = new JButton("Add inputs");
 		hide = new JButton("Hide");
 		createDiagram = new JButton("Create the diagram");
-		
-		//Creates open file button
+
+		// Creates open file button
 		openFile = new JButton("Open");
-		
-		//Adds the button click Listener
+		saveButton = new JButton("Save");
+
+		// Adds the button click Listener
 		addInputs.addActionListener(this);
 		hide.addActionListener(this);
-		createDiagram.addActionListener(this); 
+		createDiagram.addActionListener(this);
 		openFile.addActionListener(this);
-		
-		//Setting for opening files
-		
-		log = new JTextArea(5,20);
-        log.setMargin(new Insets(5,5,5,5));
-        log.setEditable(false);
-        JScrollPane logScrollPane = new JScrollPane(log);
-        fc = new JFileChooser();
+		saveButton.addActionListener(this);
 
-		//Sets the settings for the window 
+		// Setting for opening files
+
+		log = new JTextArea(5, 20);
+		log.setMargin(new Insets(5, 5, 5, 5));
+		log.setEditable(false);
+		JScrollPane logScrollPane = new JScrollPane(log);
+		fc = new JFileChooser();
+
+		// Sets the settings for the window
 		setSize(600, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		
-		//creates the new drawing
+
+		// creates the new drawing
 		object = new Draw();
-		
-		//adds the Components 
+
+		// adds the Components
 		panel.add(addInputs);
 		panel.add(hide);
 		panel.add(createDiagram);
 		panel.add(openFile);
+		panel.add(saveButton);
 		add(panel, BorderLayout.WEST);
 		add(object, BorderLayout.CENTER);
-		
-		//Draws the two circles and hides the Venn diagram
+
+		// Draws the two circles and hides the Venn diagram
 		object.drawing();
 		object.setVisible(false);
-		
+
 		JTextField text = new JTextField(6);
 		text.setText("Similarities");
-		text.moveCaretPosition(10); 
+		text.moveCaretPosition(10);
 		object.add(text);
-		
-		object.addMenu(this); 
+
+		object.addMenu(this);
 	}
-	
-	//This method is run once a button is clicked
-	public void actionPerformed (ActionEvent e) {
-		//Action for Show Button
-		if (e.getSource() == addInputs){
-			
-			//Shows the drawing
+
+	// This method is run once a button is clicked
+	public void actionPerformed(ActionEvent e) {
+		// Action for Show Button
+		if (e.getSource() == addInputs) {
+
+			// Shows the drawing
 			counter++;
 			object.setVisible(true);
-			object.addInput();		
-			
+			object.addInput();
+
 		}
-		//Action for Hide button
+		// Action for Hide button
 		else if (e.getSource() == hide) {
-			
-			//Hides the drawing 
+
+			// Hides the drawing
 			object.setVisible(false);
-		}
-		else if (e.getSource() == createDiagram) {
-			
+		} else if (e.getSource() == createDiagram) {
+
 			object.drawing();
-		}
-		else if(e.getSource() == openFile) {
+		} else if (e.getSource() == openFile) { // Open
 			int returnVal = fc.showOpenDialog(MainFrame.this);
 
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                File file = fc.getSelectedFile();
-                //This is where a real application would open the file.
-                log.append("Opening: " + file.getName() + "." + newline);
-            } else {
-                log.append("Open command cancelled by user." + newline);
-            }
-            log.setCaretPosition(log.getDocument().getLength());
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				// This is where a real application would open the file.
+				log.append("Opening: " + file.getName() + "." + newline);
+			} else {
+				log.append("Open command cancelled by user." + newline);
+			}
+			log.setCaretPosition(log.getDocument().getLength());
+		} else if (e.getSource() == saveButton) {
+			int returnVal = fc.showSaveDialog(MainFrame.this);
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+				File file = fc.getSelectedFile();
+				// This is where a real application would save the file.
+				log.append("Saving: " + file.getName() + "." + newline);
+			} else {
+				log.append("Save command cancelled by user." + newline);
+			}
+			log.setCaretPosition(log.getDocument().getLength());
 		}
 	}
 }
-
