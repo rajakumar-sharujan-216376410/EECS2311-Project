@@ -1,7 +1,8 @@
 package Prototype;
 
 import javax.swing.*;
-
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 import Prototype.Menu;
 
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public class Draw extends JPanel {
 	
-	private int xPos, yPos, distance;
+	//private int xPos, yPos, distance;
 	private String user, user2, user3;
 	
 	public void drawing() {
@@ -23,9 +24,9 @@ public class Draw extends JPanel {
 		//Sets the settings for the Venn Diagram
 		
 		g.setColor(new Color(0, 150, 255, 150));
-		g.fillOval(50, 100, xPos, yPos);
+		g.fillOval(110, 100, 220, 220);
 		g.setColor(new Color(255, 0, 0, 150));
-		g.fillOval(distance, 100, xPos, yPos);	
+		g.fillOval(5, 100, 220, 220);	
 	
 	}
 	
@@ -52,7 +53,7 @@ public class Draw extends JPanel {
 		f.setVisible(true);
 	}
 	
-	public void addInput() {
+	/*public void addInput() {
 	
 		user = JOptionPane.showInputDialog(this, "Enter the x position of the circle: ");
 		user2 = JOptionPane.showInputDialog(this, "Enter the y position of the circle: ");
@@ -62,5 +63,5 @@ public class Draw extends JPanel {
 		yPos = Integer.parseInt(user2);
 		distance = Integer.parseInt(user3);
 		
-	}
+	}*/
 }
