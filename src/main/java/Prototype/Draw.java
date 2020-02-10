@@ -39,7 +39,7 @@ public class Draw extends JPanel {
 		//Sets the settings for the Venn Diagram
 		
 		g.setColor(new Color(0, 150, 255, 150));
-		g.fillOval(50, 100, xPos, yPos);
+		g.fillOval(0, 100, xPos, yPos);
 		g.setColor(new Color(255, 0, 0, 150));
 		g.fillOval(distance, 100, xPos, yPos);	
 	
