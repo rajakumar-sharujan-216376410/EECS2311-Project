@@ -16,6 +16,8 @@ import java.awt.TextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -25,6 +27,8 @@ import javax.swing.Timer;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.*;
@@ -393,10 +397,23 @@ public class MainFrame extends javax.swing.JFrame {
 		 
 		if (userSelection == JFileChooser.APPROVE_OPTION) {
 		    File fileToSave = fileChooser.getSelectedFile();
+		    
+	        try {
+	            Thread.sleep(1000);
+	            Toolkit tk = Toolkit.getDefaultToolkit(); 
+	            Dimension d = tk.getScreenSize();
+	            Rectangle rec = new Rectangle(0, 0, d.width, d.height);  
+	            Robot ro = new Robot();
+	            BufferedImage img = ro.createScreenCapture(rec);
+	            ImageIO.write(img, "jpg", fileToSave);
+	        } catch (Exception ex) {
+	            System.out.println(ex.getMessage());
+	        }
+		    
 		    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
 		}
 	}// GEN-LAST:event_saveBtnActionPerformed
-
+	
 	private void addTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addTextActionPerformed
 
 		textLabel.setText("Empty Text");
