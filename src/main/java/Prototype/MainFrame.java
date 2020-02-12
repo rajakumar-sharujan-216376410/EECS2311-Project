@@ -22,6 +22,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.SwingUtilities;
+import javax.swing.filechooser.*;
+
+
 public class MainFrame extends javax.swing.JFrame {
 
 	public MainFrame() {
@@ -374,8 +382,19 @@ public class MainFrame extends javax.swing.JFrame {
 		}
 	}// GEN-LAST:event_rightContainerColorActionPerformed
 
+	JFileChooser fileChooser = new JFileChooser();
 	private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_saveBtnActionPerformed
-		// TODO add your handling code here:
+		JFrame parentFrame = new JFrame();
+		 
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");   
+		 
+		int userSelection = fileChooser.showSaveDialog(parentFrame);
+		 
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToSave = fileChooser.getSelectedFile();
+		    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+		}
 	}// GEN-LAST:event_saveBtnActionPerformed
 
 	private void addTextActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_addTextActionPerformed
