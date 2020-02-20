@@ -28,10 +28,14 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.TransferHandler;
 import javax.swing.border.BevelBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+
 
 /**
  *
@@ -460,21 +464,35 @@ public class MainFrame extends javax.swing.JFrame {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         
-        BufferedImage image = null;
-        try {
-            
-            Rectangle rect= new Rectangle(300,100,Toolkit.getDefaultToolkit().getScreenSize().width-330,Toolkit.getDefaultToolkit().getScreenSize().height-150);
-            image = new Robot().createScreenCapture(rect);
-        } catch (AWTException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    	 BufferedImage image = null;
+         try {
+             
+             Rectangle rect= new Rectangle(300,100,Toolkit.getDefaultToolkit().getScreenSize().width-330,Toolkit.getDefaultToolkit().getScreenSize().height-150);
+             image = new Robot().createScreenCapture(rect);
+         } catch (AWTException ex) {
+             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+         }
+         
+         String suggesteddir = ".";
+         String EXTENSION = ".png";
+         JFileChooser fileChooser = new JFileChooser(suggesteddir);
+         FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", ImageIO.getReaderFileSuffixes());
+         fileChooser.addChoosableFileFilter(filter);
+          int status = fileChooser.showSaveDialog(null);
+     if(status == JFileChooser.APPROVE_OPTION) {
+         try {
+         	 File selectedFile = fileChooser.getSelectedFile();
+              String newfile = selectedFile.getCanonicalPath();
+              if (!newfile.endsWith(EXTENSION)) {
+                  newfile=newfile + EXTENSION;
+              }
     
-        try {
-            ImageIO.write(image, "png", new File("pic.png"));
-            // TODO add your handling code here:
-        } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
+             ImageIO.write(image, "png", new File(newfile));
+             // TODO add your handling code here:
+         } catch (IOException ex) {
+             Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+         }
+     }
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void addTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTextActionPerformed
