@@ -93,8 +93,8 @@ public class mainFXMLController implements Initializable {
         return fontColor;
     }
     
-    public Paint getColorFirstCirle(){
-    	return firstCircle.getFill();
+    public Paint getColorFirstCirle(Circle c){
+    	return c.getFill();
     }
     
  

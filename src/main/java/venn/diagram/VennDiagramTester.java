@@ -25,6 +25,9 @@ class VennDiagramTester {
 	}
 	@Test
 	public void getColorTest() {
+		Circle c = new Circle();
+		c.setFill(Color.RED);
+		assertEquals(Color.RED,controller.getColorFirstCirle(c));
  
 	}
 	
