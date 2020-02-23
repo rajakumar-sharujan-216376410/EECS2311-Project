@@ -30,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
@@ -91,6 +92,12 @@ public class mainFXMLController implements Initializable {
     public JFXColorPicker getFontColor(){
         return fontColor;
     }
+    
+    public Paint getColorFirstCirle(){
+    	return firstCircle.getFill();
+    }
+    
+ 
     
     //holding a list of all editable fields
     Map<Integer, EditableLabel> list = new HashMap<>();
