@@ -72,3 +72,45 @@ public class mainFXMLController implements Initializable {
        secondCircle.fillProperty().bind(rightContainerPicker.valueProperty());
        
     } 
+    
+    @FXML
+    private void addTextField(ActionEvent event) {
+    
+        EditableLabel editableLabel = new EditableLabel("enter text here");
+        writeToContainer.getChildren().add(editableLabel);
+        fontColor.setValue(Color.BLACK);
+        editableLabel.textFillProperty().bind(fontColor.valueProperty());
+        editableLabel.setFonts(fontdropdown);
+        fontdropdown.valueProperty().addListener((observable) -> {
+            editableLabel.setFont(new Font(fontdropdown.getValue(), 13));
+        });
+        fontSize.textProperty().addListener((observable) -> {
+            
+            int value =Integer.parseInt(fontSize.getText());
+            editableLabel.setFont(Font.font(value));
+            DecimalFormat format =new DecimalFormat("#.0");
+            fontSize.setTextFormatter( new TextFormatter<>(c ->
+            {
+                if ( c.getControlNewText().isEmpty() )
+                {
+                    return c;
+                }
+
+                ParsePosition parsePosition = new ParsePosition( 0 );
+                Object object = format.parse( c.getControlNewText(), parsePosition );
+
+                if ( object == null || parsePosition.getIndex() < c.getControlNewText().length() )
+                {
+                    return null;
+                }
+                else
+                {
+                    return c;
+                }
+            }));
+         });
+        
+        editableLabel.delete(deleteBtn, writeToContainer);
+    }
+    
+}
