@@ -7,6 +7,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,7 +18,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1043.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.diagram.mainFXMLController">
+<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1043.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.diagram.mainFXMLController">
    <children>
       <VBox alignment="CENTER" prefHeight="695.0" prefWidth="332.0" style="-fx-background-color: #212121;">
          <children>
@@ -183,6 +186,28 @@
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
                <children>
+                  <MenuBar>
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="new project" />
+                              <MenuItem mnemonicParsing="false" text="Open project" />
+                              <MenuItem mnemonicParsing="false" text="Close application" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Download">
+                        <items>
+                          <MenuItem fx:id="donwloadAsPdf" mnemonicParsing="false" onAction="#savePDF" text="Download as pdf" />
+                              <MenuItem mnemonicParsing="false" onAction="#saveImage" text="Donwload as image" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
                   <Label alignment="CENTER" prefHeight="40.0" prefWidth="256.0" text="VENN Diagram" textAlignment="CENTER">
                      <font>
                         <Font name="Century Gothic" size="27.0" />
