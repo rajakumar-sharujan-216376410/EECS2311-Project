@@ -109,6 +109,10 @@ public class mainFXMLController implements Initializable {
     	c.setRadius(radius); 
     }
     
+    public double getRadius(Circle c) {
+    	return c.getRadius();
+    }
+    
     //holding a list of all editable fields
     Map<Integer, EditableLabel> list = new HashMap<>();
     

@@ -38,6 +38,6 @@ class VennDiagramTester {
 	@Test
 	public void getSizeTest() {
 		c.setRadius(100);
-		assertEquals(100, c.getRadius()); 
+		assertEquals(100, controller.getRadius(c)); 
 	}
 }
