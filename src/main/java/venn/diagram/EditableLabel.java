@@ -21,10 +21,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-/**
- *
- * @author Keh Perick
- */
+
 public class EditableLabel extends Label implements SelectableNode{
    
     TextField textField = new TextField();
