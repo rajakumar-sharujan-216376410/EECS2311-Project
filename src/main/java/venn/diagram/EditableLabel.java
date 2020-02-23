@@ -1,9 +1,16 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package venn.diagram;
 
 import com.jfoenix.controls.JFXColorPicker;
 import com.jfoenix.controls.JFXComboBox;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -11,11 +18,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
-public class EditableLabel extends Label{
-    
+/**
+ *
+ * @author Keh Perick
+ */
+public class EditableLabel extends Label implements SelectableNode{
+   
     TextField textField = new TextField();
-    String backup = "";
+    String backup = "enter text";
+    private double x;
+    private double y;
+    mainFXMLController controller;
     
     public EditableLabel(){
         this("");
@@ -31,6 +47,14 @@ public class EditableLabel extends Label{
                 this.setText("");
                 textField.requestFocus();
             }
+            else if(e.getClickCount() == 1){
+               this.textFillProperty().bind(mainFXMLController.getInstance().getFontColor().valueProperty()); 
+               this.textFillProperty().unbind();
+            }
+            this.textFillProperty().unbind();
+        });
+        this.setOnMouseExited((event) -> {
+           
         });
         
         textField.focusedProperty().addListener((prop, o, n) -> {
@@ -71,10 +95,15 @@ public class EditableLabel extends Label{
     
     public void setFonts(JFXComboBox<String> fontCombo){
         String[] fonts = {
-            "Roboto",
-            "Sans-serif",
-            "Serif",
-            "Century Gothic"
+            "Comfortaa",
+            "Impact",
+            "Verdana",
+            "Aerial",
+            "Comic Sans MS",
+            "Courier New",
+            "Georgia",
+            "Times New Roman",
+            "Trebuchet MS",
         };
         List<String> fontList = Arrays.asList(fonts);
         
@@ -83,8 +112,62 @@ public class EditableLabel extends Label{
         fontCombo.getItems().addAll(fontItems);
     }
     
+      
     //deleting the label on button pressed
     public void delete(Button btn, AnchorPane ap){
         btn.setOnAction((event) -> {
             ap.getChildren().remove(this);
         });
+        
+//        if(this.isFocused()){
+//            System.out.println("Focused");
+//           this.setOnKeyReleased((event) -> {
+//               if(event.getCode().equals(KeyCode.DELETE)){
+//                   ap.getChildren().remove(this);
+//               }
+//           });
+//        }
+    }
+    
+    public void makeDragAndDrop(){
+        
+        this.setOnMousePressed((event) -> {
+            x = this.getLayoutX() - event.getSceneX();
+            y = this.getLayoutY() - event.getSceneY();
+        });
+        
+        this.setOnMouseDragged((event) -> {
+            this.setLayoutX(event.getSceneX() + x);
+            this.setLayoutY(event.getSceneY() + y);
+        });
+    }
+
+    @Override
+    public boolean requestSelection(boolean select) {
+        return true;
+    }
+
+    @Override
+    public void notifySelection(boolean select) {
+        if(select){
+            mainFXMLController.getInstance().getFontSize().textProperty().addListener((observable) -> {
+                this.setFont(Font.font(Integer.parseInt(mainFXMLController.getInstance().getFontSize().getText())));
+            });
+            this.setTextFill(Color.GREEN);
+        }
+        else{
+            this.setFont(Font.font(Integer.parseInt(controller.getFontSizeField().getText())));
+            this.setTextFill(Color.BLUE);
+        }
+    }
+   
+}
+
+
+
+
+
+
+
+
+
