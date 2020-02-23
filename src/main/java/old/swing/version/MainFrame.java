@@ -32,10 +32,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JSlider;
 
-/**
- *
- * @author Ali
- */
+
 public class MainFrame extends javax.swing.JFrame {
 
     /**
