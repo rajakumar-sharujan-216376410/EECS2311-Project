@@ -11,14 +11,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.ParsePosition;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,15 +93,21 @@ public class mainFXMLController implements Initializable {
         return fontColor;
     }
     
-    public Paint getColor(Circle c){
+    public Paint getColorFirstCirle(){
+    	return firstCircle.getFill();
+    }
+    
+    public Paint getColor(Circle c) {
     	return c.getFill();
     }
     
     public void setColor(Circle c, Color newColor) {
-    	c.setFill(newColor);
+    	c.setFill(newColor); 
     }
     
-   
+    public void setRadius(Circle c, double radius) {
+    	c.setRadius(radius); 
+    }
     
     //holding a list of all editable fields
     Map<Integer, EditableLabel> list = new HashMap<>();
@@ -116,15 +119,14 @@ public class mainFXMLController implements Initializable {
     
     //hold the number of labels
     int labelCount = 0;
-    
- public void addText(int Count, EditableLabel newEntry) {
+
+    public void addText(int Count, EditableLabel newEntry) {
     	list.put(Count, newEntry);
     }
  
- public EditableLabel getText(int Count) {
-	 return list.get(Count);
- }
- 
+    public EditableLabel getText(int Count) {
+    	return list.get(Count);
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
