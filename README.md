@@ -5,6 +5,8 @@ input text, delete text and save work is also available. Inside the zip file is 
 
 Requirements:  JDK Version - 1.8, Gradle 5
 
+Please check vM for files.
+
 Instructions to set-up JAR libraries in eclipse IDE:
 1. Go into the properities of Venn by right clicking the project name "Venn" in eclipse.
 2. Go to Build path -> Configure Build path.
