@@ -33,4 +33,7 @@ dependencies {
     
     //jfoenix dependency
     compile files('libs/jfoenix-8.0.4.jar')
+    
+    //pdfbox
+    compile files('libs/pdfbox-app-2.0.8.jar')
 }
