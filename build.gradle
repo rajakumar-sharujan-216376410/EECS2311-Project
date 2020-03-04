@@ -11,6 +11,10 @@ plugins {
     id 'java-library'
 }
 
+test {
+	useJUnitPlatform()
+}
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -36,4 +40,8 @@ dependencies {
     
     //pdfbox
     compile files('libs/pdfbox-app-2.0.8.jar')
+    
+    //JUnit
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
 }
