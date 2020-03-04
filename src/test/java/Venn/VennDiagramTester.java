@@ -1,4 +1,4 @@
-package venn.diagram;
+package Venn;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import venn.diagram.EditableLabel;
+import venn.diagram.mainFXMLController;
 
 class VennDiagramTester {
 
