@@ -24,6 +24,7 @@ public class EditableLabel extends Label implements SelectableNode{
     String backup = "enter text";
     private double x;
     private double y;
+    private EditableLabel selectedLabel;
     mainFXMLController controller;
     
     public EditableLabel(){
@@ -120,6 +121,21 @@ public class EditableLabel extends Label implements SelectableNode{
 //               }
 //           });
 //        }
+    }
+    
+    public void deleteSelectedLabel(Button btn, AnchorPane ap){
+        btn.setOnAction((event) -> {
+            ap.getChildren().remove(getSelectedLabel());
+            System.out.println("selectable node "+ getSelectedLabel().getText());
+        });
+    }
+    
+    private EditableLabel getSelectedLabel(){
+        EditableLabel defaultLabel = new EditableLabel("");
+        if(selectedLabel == null)
+            return defaultLabel;
+        else
+        return selectedLabel;
     }
     
     public void makeDragAndDrop(){
