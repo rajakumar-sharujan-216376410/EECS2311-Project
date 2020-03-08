@@ -27,5 +27,13 @@
 	<classpathentry kind="lib" path="pdfbox-app-2.0.8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="build.gradle"/>
+	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/hamcrest-core-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/manifest.mf"/>
+	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/build.xml"/>
+	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/config.properties"/>
+	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/jfxrt.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
