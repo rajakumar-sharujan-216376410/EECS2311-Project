@@ -40,6 +40,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -110,6 +111,35 @@ public class mainFXMLController implements Initializable {
     
     public JFXComboBox< String> getFontDropdown(){
         return fontdropdown;
+    }
+    
+    public Paint getColorFirstCirle(){
+    	return firstCircle.getFill();
+    }
+
+    public Paint getColor(Circle c) {
+    	return c.getFill();
+    }
+
+    public void setColor(Circle c, Color newColor) {
+    	c.setFill(newColor); 
+    }
+    
+    public void setRadius(Circle c, double radius) {
+    	c.setRadius(radius); 
+    }
+
+    public double getRadius(Circle c) {
+    	return c.getRadius();
+    }
+    
+
+    public void addText(int Count, EditableLabel newEntry) {
+    	list.put(Count, newEntry);
+    }
+
+    public EditableLabel getText(int Count) {
+    	return list.get(Count);
     }
     
     Persistent persistent;

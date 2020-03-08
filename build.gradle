@@ -62,4 +62,6 @@ dependencies {
     //JUnit
     testCompile('org.junit.jupiter:junit-jupiter:5.3.1')
   	testImplementation('org.junit.jupiter:junit-jupiter:5.3.1')
+  	testRuntime "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+  	
 }
