@@ -56,6 +56,9 @@ dependencies {
     //gson
     compile files('libs/gson-2.8.2.jar')
     
+    //jfxrt
+    compile files('libs/jfxrt.jar')
+    
     //JUnit
     testCompile('org.junit.jupiter:junit-jupiter:5.3.1')
   	testImplementation('org.junit.jupiter:junit-jupiter:5.3.1')

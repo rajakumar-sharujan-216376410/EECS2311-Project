@@ -23,14 +23,14 @@
 			<accessrule kind="accessible" pattern="javafx/**"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/java/venn/diagram/jfoenix-8.0.4.jar"/>
 	<classpathentry kind="lib" path="pdfbox-app-2.0.8.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="build.gradle"/>
-	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/Software Engineering-2nd Year (York University)/EECS2311-Software Development Project/venn diagram/gson-2.6.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/Software Engineering-2nd Year (York University)/EECS2311-Software Development Project/venn diagram/hamcrest-core-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/Software Engineering-2nd Year (York University)/EECS2311-Software Development Project/venn diagram/jfxrt.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/Software Engineering-2nd Year (York University)/EECS2311-Software Development Project/venn diagram/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/sharu/Desktop/Software Engineering-2nd Year (York University)/EECS2311-Software Development Project/venn diagram/junit-4.10.jar"/>
+	<classpathentry kind="lib" path="jfxrt.jar"/>
+	<classpathentry kind="lib" path="gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="hamcrest-core-1.1.jar"/>
+	<classpathentry kind="lib" path="jfoenix-8.0.4.jar"/>
+	<classpathentry kind="lib" path="json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="junit-4.10.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
