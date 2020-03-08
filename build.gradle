@@ -16,6 +16,15 @@ test {
 	useJUnitPlatform()
 }
 
+sourceSets {
+  main {
+    resources {
+        srcDirs = ["src/main/java"]
+        includes = ["**/*.fxml"]
+    }
+  }
+}
+
 repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
@@ -63,7 +72,7 @@ dependencies {
     //JUnit
     testCompile('org.junit.jupiter:junit-jupiter:5.3.1')
   	testImplementation('org.junit.jupiter:junit-jupiter:5.3.1')
-  	testRuntime "org.junit.jupiter:junit-jupiter-engine:5.2.0"
+  	testRuntime("org.junit.jupiter:junit-jupiter-engine:5.2.0")
   	
 }
 
