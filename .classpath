@@ -13,24 +13,8 @@
 			<attribute name="gradle_used_by_scope" value="test"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/">
-		<accessrules>
-			<accessrule kind="accessible" pattern="javafx/**"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer">
-		<accessrules>
-			<accessrule kind="accessible" pattern="javafx/**"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry kind="lib" path="pdfbox-app-2.0.8.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8/"/>
+	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="build.gradle"/>
-	<classpathentry kind="lib" path="jfxrt.jar"/>
-	<classpathentry kind="lib" path="gson-2.6.2.jar"/>
-	<classpathentry kind="lib" path="hamcrest-core-1.1.jar"/>
-	<classpathentry kind="lib" path="jfoenix-8.0.4.jar"/>
-	<classpathentry kind="lib" path="json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="junit-4.10.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
