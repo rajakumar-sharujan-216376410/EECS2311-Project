@@ -77,13 +77,11 @@ dependencies {
 }
 
 jar {
-    manifest {
-       archiveName = 'VennDiagram.jar'
-       
+    manifest {   
         attributes(
                 'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
                 'Main-Class': 'venn.diagram.VennDiagram',
-                'Implementation-Version': project.version
+                
         )
     }
     
