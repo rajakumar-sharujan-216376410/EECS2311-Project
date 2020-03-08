@@ -47,6 +47,15 @@ dependencies {
     //hamcrest 
     compile files('libs/hamcrest-core-1.1.jar')
     
+    //common-compress
+    compile files('libs/commons-compress-1.20.jar')
+    
+    //common-io
+    compile files('libs/commons-io-2.6.jar')
+    
+    //gson
+    compile files('libs/gson-2.8.2.jar')
+    
     //JUnit
     testCompile('org.junit.jupiter:junit-jupiter:5.3.1')
   	testImplementation('org.junit.jupiter:junit-jupiter:5.3.1')
