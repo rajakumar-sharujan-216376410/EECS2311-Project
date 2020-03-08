@@ -41,6 +41,12 @@ dependencies {
     //pdfbox
     compile files('libs/pdfbox-app-2.0.8.jar')
     
+    //json
+    compile files('libs/json-simple-1.1.1.jar')
+    
+    //hamcrest 
+    compile files('libs/hamcrest-core-1.1.jar')
+    
     //JUnit
     testCompile('org.junit.jupiter:junit-jupiter:5.3.1')
   	testImplementation('org.junit.jupiter:junit-jupiter:5.3.1')
