@@ -124,6 +124,7 @@ public class mainFXMLController implements Initializable {
         return fontdropdown;
     }
     
+    
     Persistent persistent;
     
     //holding a list of all editable fields
@@ -147,6 +148,34 @@ public class mainFXMLController implements Initializable {
     public ObservableList<EditableLabel> selectionList = FXCollections.observableArrayList();
     private File saveLocation;
 
+    public Paint getColorFirstCirle(){
+    	return firstCircle.getFill();
+    }
+
+    public Paint getColor(Circle c) {
+    	return c.getFill();
+    }
+
+    public void setColor(Circle c, Color newColor) {
+    	c.setFill(newColor); 
+    }
+
+    public void setRadius(Circle c, double radius) {
+    	c.setRadius(radius); 
+    }
+
+    public double getRadius(Circle c) {
+    	return c.getRadius();
+    }
+
+
+    public void addText(int Count, EditableLabel newEntry) {
+    	list.put(Count, newEntry);
+    }
+
+    public EditableLabel getText(int Count) {
+    	return list.get(Count);
+    	}
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
