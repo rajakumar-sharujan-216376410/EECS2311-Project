@@ -14,12 +14,13 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1043.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.diagram.mainFXMLController">
+<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1367.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.diagram.mainFXMLController">
    <children>
       <VBox alignment="CENTER" prefHeight="695.0" prefWidth="332.0" style="-fx-background-color: #212121;">
          <children>
@@ -162,7 +163,7 @@
                               <Insets left="15.0" />
                            </padding>
                         </Label>
-                        <JFXComboBox fx:id="fontdropdown" labelFloat="true" prefHeight="25.0" prefWidth="184.0" promptText="enter font family" />
+                        <JFXComboBox fx:id="fontdropdown" labelFloat="true" prefHeight="25.0" prefWidth="184.0" promptText="enter fontName family" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="282.0">
@@ -196,11 +197,17 @@
                       <Menu mnemonicParsing="false" text="File">
                         <items>
                           <MenuItem mnemonicParsing="false" onAction="#newProject" text="new project" />
+                              <MenuItem mnemonicParsing="false" onAction="#newGuessMod" text="New Guess Mode" />
                               <MenuItem mnemonicParsing="false" onAction="#openExistingProject" text="Open project" />
                               <MenuItem mnemonicParsing="false" onAction="#saveForEdit" text="save project" />
                               <MenuItem mnemonicParsing="false" onAction="#exit" text="Close application" />
                         </items>
                       </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                          <items>
+                            <MenuItem fx:id="undo" mnemonicParsing="false" onAction="#undo" text="Undo" />
+                          </items>
+                        </Menu>
                       <Menu mnemonicParsing="false" text="Download">
                         <items>
                           <MenuItem fx:id="donwloadAsPdf" mnemonicParsing="false" onAction="#savePDF" text="Download as pdf" />
@@ -219,16 +226,12 @@
                         <Font name="Century Gothic" size="27.0" />
                      </font>
                   </Label>
-                  <StackPane VBox.vgrow="ALWAYS">
+                  <Pane fx:id="writeToContainer" prefHeight="742.0" prefWidth="1035.0">
                      <children>
-                        <AnchorPane fx:id="writeToContainer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="657.0" prefWidth="635.0" StackPane.alignment="CENTER">
-                           <children>
-                              <Circle fx:id="firstCircle" blendMode="MULTIPLY" fill="#53acff" layoutX="411.0" layoutY="361.0" radius="100.0" stroke="#f7824f00" strokeType="INSIDE" />
-                              <Circle fx:id="secondCircle" blendMode="MULTIPLY" fill="#ee9f1f" layoutX="495.0" layoutY="361.0" radius="100.0" stroke="#ffffff00" strokeType="INSIDE" />
-                           </children>
-                        </AnchorPane>
+                        <Circle fx:id="firstCircle" blendMode="MULTIPLY" fill="#53acff" layoutX="620.0" layoutY="316.0" radius="250.0" stroke="#f7824f00" strokeType="INSIDE" />
+                        <Circle fx:id="secondCircle" blendMode="MULTIPLY" fill="#ee9f1f" layoutX="517.0" layoutY="316.0" radius="250.0" stroke="#ffffff00" strokeType="INSIDE" />
                      </children>
-                  </StackPane>
+                  </Pane>
                   <AnchorPane prefHeight="132.0" prefWidth="635.0" />
                </children>
             </VBox>
