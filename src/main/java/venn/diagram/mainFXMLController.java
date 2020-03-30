@@ -54,8 +54,8 @@ import org.json.simple.JSONObject;
 
 
 public class mainFXMLController implements Initializable {
-    
-	public MenuItem undo;
+
+    public MenuItem undo;
     private Label label;
     @FXML
     private JFXSlider circleRadiusSlider;
@@ -497,5 +497,428 @@ public class mainFXMLController implements Initializable {
 
         editableLabel.makeDragAndDrop();
     }
+
+    public JFXTextField getFontSizeField(){
+        return fontSize;
+    }
+
+    @FXML
+    private void saveImage(ActionEvent event) {
         
+        // here we make image from anchorpane and add it to scene, can be repeated :)
+                WritableImage snapshot = writeToContainer.snapshot(new SnapshotParameters(), null);
+
+        //creating a filechooser to save the iamge file
+        FileChooser fileChooser = new FileChooser();
+        configureFileChooser(fileChooser, "save image as");
+        
+        //set extension filter 
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("png images", "*.png");
+        
+        fileChooser.getExtensionFilters().add(extensionFilter);
+        
+        //show save file dialog
+        File file = fileChooser.showSaveDialog(null);
+        if(file != null){
+            SaveFile(snapshot, file);
+        }
+         }
+
+    
+    //save image file in a png format
+    private void SaveFile(WritableImage snapshot, File file) {
+       try {
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(snapshot, null);
+        ImageIO.write(bufferedImage, "png", file);
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+    }
+
+    @FXML
+    private void savePDF(ActionEvent event) {
+        
+        //creating a writable image
+        WritableImage image = writeToContainer.snapshot(new SnapshotParameters(), null);
+        FileChooser fc = new FileChooser();
+        
+        fc.setTitle("Save as pdf");
+        FileChooser.ExtensionFilter extension = new FileChooser.ExtensionFilter("save document as", "*.pdf");
+        fc.getExtensionFilters().add(extension);
+        //file chooser to save the pdf document
+        File file = fc.showSaveDialog(null);
+        File imgFile = new File("img.png");
+        try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imgFile);
+        } catch (IOException e) {
+            System.err.println("An Error occured "+ e.getMessage());
+        }
+        
+        PDDocument doc = new PDDocument();
+        PDPage page = new PDPage();
+        PDImageXObject pdimage;
+        PDPageContentStream content;
+        
+        try {
+            pdimage = PDImageXObject.createFromFile("img.png", doc);
+            content = new PDPageContentStream(doc, page);
+            content.drawImage(pdimage, 100, 100);
+            content.close();
+            doc.addPage(page);
+            doc.save(file);
+            doc.close();
+            imgFile.delete();
+        } catch (IOException e) {
+            Logger.getLogger(mainFXMLController.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        
+        
+    }
+    
+    private static void configureFileChooser(final FileChooser fileChooser, String title){                           
+        fileChooser.setTitle(title);
+        fileChooser.setInitialDirectory(
+            new File(System.getProperty("user.home"))
+        ); 
+    }
+
+    @FXML
+    private void saveForEdit(ActionEvent event) {
+  
+//        Persistent persist = new Persistent();
+//        persist.saveForEdit(list);
+        save();
+    }
+
+    @FXML
+    private void newProject(ActionEvent event) {
+        JFXDialogLayout content = new JFXDialogLayout();
+
+        //setting the heading for the dialog box
+        content.setHeading(new Text("Confirm Action"));
+        content.setBody(new Text("Are you sure you want to Close this and create new project?"));
+
+        //instantiating the dialog
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.BOTTOM, false);
+        JFXButton confirmBtn = new JFXButton("Yes");
+        confirmBtn.setOnAction((evt) -> {
+            dialog.close();
+            save();
+            writeToContainer.getChildren().removeIf(node -> node instanceof EditableLabel);
+            observableList.removeAll(observableList);
+            circleRadiusSlider.setValue(250);
+            leftContainerPicker.setValue(Color.DARKORANGE);
+            rightContainerPicker.setValue(Color.LAWNGREEN);
+            fontColor.setDisable(false);
+            fontSize.setDisable(false);
+            fontColor.setValue(Color.BLACK);
+            fontSize.setText("12");
+            addButton.setText("Add Text");
+            if(guessMod) {
+                guessMod = false;
+                firstCircle.setLayoutX(initX);
+                secondCircle.setLayoutX(initY);
+            }
+        });
+        JFXButton cancelBtn = new JFXButton("No");
+        cancelBtn.setOnAction((evt) -> {
+            dialog.close();
+        });
+
+        //adding the button to dialog
+        content.setActions(confirmBtn, cancelBtn);
+        dialog.show();
+//        Persistent persist = new Persistent();
+//        persist.createProject();
+    }
+
+    @FXML
+    private void clearAllLabel(ActionEvent event) {
+        JFXDialogLayout content = new JFXDialogLayout();
+        
+        //setting the heading for the dialog box
+        content.setHeading(new Text("Confirm Action"));
+        content.setBody(new Text("Are you sure you want to clear all text?"));
+        
+        //instantiating the dialog 
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.TOP, false);
+        JFXButton confirmBtn = new JFXButton("delete");
+        confirmBtn.setOnAction((evt) -> {
+            dialog.close();
+            writeToContainer.getChildren().removeIf(node -> node instanceof EditableLabel);
+            
+        });
+        JFXButton cancelBtn = new JFXButton("cancel");
+        cancelBtn.setOnAction((evt) -> {
+            dialog.close();
+        });
+        
+        //adding the button to dialog
+        content.setActions(confirmBtn, cancelBtn);
+        dialog.show();
+        
+        
+    }
+
+    @FXML
+    private void openExistingProject(ActionEvent event) {
+
+        FileChooser fileChooser = new FileChooser();
+
+        //setting configuration for filechooser
+        fileChooser.setTitle("Load");
+        fileChooser.setInitialFileName("untitled.venn");
+
+        //setting the extension filter of the file
+        FileChooser.ExtensionFilter extension = new FileChooser.ExtensionFilter("Load Project", "*.venn");
+        fileChooser.getExtensionFilters().add(extension);
+        fileChooser.setTitle("Load project");
+        File file = fileChooser.showOpenDialog(VennDiagram.stage);
+        if (file!=null){
+            writeToContainer.getChildren().removeIf(node -> node instanceof EditableLabel);
+            observableList.removeAll(observableList);
+            selectionList.removeAll(selectionList);
+            try {
+                FileInputStream fos = new FileInputStream(file);
+                ObjectInputStream ois = new ObjectInputStream(fos);
+                List<Properties> properties = (List<Properties>) ois.readObject();
+                if (properties!=null){
+                    for (Properties p:properties){
+                        editableLabel = new EditableLabel(p.getText(),p.getDescription());
+                        //setting a new position for the editableLabel translate was here
+                        editableLabel.setLayoutY(p.getY());
+                        editableLabel.setLayoutX(p.getX());
+                        //create a list of editable label to keep track and count
+                        observableList.add(editableLabel);
+                        writeToContainer.getChildren().add(editableLabel);
+                        editableLabel.setFont(Font.font(p.getFontName(), p.getFontSize()));
+                        editableLabel.setTextFill(Color.web(p.getFontColor()));
+                        fontdropdown.valueProperty().addListener((observable) -> {
+                            editableLabel.setFont(new Font(fontdropdown.getValue(), Integer.parseInt(fontSize.getText())));
+                        });
+                        fontSize.textProperty().addListener((observable) -> {
+                            int value =Integer.parseInt(fontSize.getText());
+                            editableLabel.setFont(Font.font(value));
+                            DecimalFormat format =new DecimalFormat("#.0");
+                            fontSize.setTextFormatter( new TextFormatter<>(c ->
+                            {
+                                if ( c.getControlNewText().isEmpty() )
+                                {
+                                    return c;
+                                }
+
+                                ParsePosition parsePosition = new ParsePosition( 0 );
+                                Object object = format.parse( c.getControlNewText(), parsePosition );
+
+                                if ( object == null || parsePosition.getIndex() < c.getControlNewText().length() )
+                                {
+                                    return null;
+                                }
+                                else
+                                {
+                                    return c;
+                                }
+                            }));
+                        });
+
+
+                        editableLabel.makeDragAndDrop();
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    private void exit(ActionEvent event) {
+        Platform.exit();
+    }
+    private void save(){
+        List<Properties> properties = new ArrayList<>();
+        for (EditableLabel label:observableList){
+            Color c = (Color) label.getTextFill();
+            String hex = String.format( "#%02X%02X%02X",
+                    (int)( c.getRed() * 255 ),
+                    (int)( c.getGreen() * 255 ),
+                    (int)( c.getBlue() * 255 ) );
+            System.out.println(label.getLayoutX() +" "+label.getLayoutY());
+            Properties properties1 = new Properties(
+                    label.getText(),
+                    label.getLayoutX(),
+                    label.getLayoutY(),
+                    hex,
+                    label.getFont().getName(),
+                    label.getFont().getSize()
+            );
+            properties1.setDescription(label.desc);
+            properties.add(properties1);
+        }
+        if (saveLocation == null) {
+            FileChooser fileChooser = new FileChooser();
+
+            //setting configuration for filechooser
+            fileChooser.setTitle("Save");
+            fileChooser.setInitialFileName("untitled.venn");
+
+            //setting the extension filter of the file
+            FileChooser.ExtensionFilter extension = new FileChooser.ExtensionFilter("save project", "*.venn");
+            fileChooser.getExtensionFilters().add(extension);
+            fileChooser.setTitle("save project");
+            saveLocation = fileChooser.showSaveDialog(VennDiagram.stage);
+        }
+        if (saveLocation!=null){
+            try {
+                FileOutputStream fos = new FileOutputStream(saveLocation);
+                ObjectOutputStream os = new ObjectOutputStream(fos);
+                os.writeObject(properties);
+                os.close();
+                fos.close();
+                System.out.println("Success");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void undo(ActionEvent actionEvent) {
+            if (lastAction.equals(ACTIONS[0])){
+                if (lastSelection!=null){
+                    Paint temp = lastSelection.getTextFill();
+                    lastSelection.setTextFill(lastColor);
+                    lastColor = temp;
+                    if (!canRedo) {
+                        canRedo = true;
+                        undo.setText("Redo");
+                    }
+                    else if (canRedo) {
+                        canRedo = false;
+                        undo.setText("Undo");
+                    }
+                    return;
+                }
+            }
+            if (lastAction.equals(ACTIONS[1])){
+                if (lastSelection!=null){
+                    Font temp = lastSelection.getFont();
+                    lastSelection.setFont(lastFont);
+                    lastFont = temp;
+                    if (!canRedo) {
+                        canRedo = true;
+                        undo.setText("Redo");
+                    }
+                    else if (canRedo) {
+                        canRedo = false;
+                        undo.setText("Undo");
+                    }
+                    return;
+                }
+            }
+            if (lastAction.equals(ACTIONS[2])){
+                if (lastSelection!=null){
+                    Font temp = lastSelection.getFont();
+                    lastSelection.setFont(new Font(temp.getName(),lastSize));
+                    lastSize = temp.getSize();
+                    if (!canRedo) {
+                        canRedo = true;
+                        undo.setText("Redo");
+                    }
+                    else if (canRedo) {
+                        canRedo = false;
+                        undo.setText("Undo");
+                    }
+                }
+            }
+    }
+
+    private void createGuess(){
+        Guess guess = new Guess(50,"Gas Powered","Hybrid","Electric");
+        Pair<String,String> leftP = new Pair<>(guess.getLeft(),"");
+        createLabel(leftP);
+        left = editableLabel;
+        Pair<String,String> middleP = new Pair<>(guess.getMiddle(),"");
+        createLabel(middleP);
+        middle = editableLabel;
+        Pair<String,String> rightP = new Pair<>(guess.getRight(),"");
+        createLabel(rightP);
+        right = editableLabel;
+        double radius = firstCircle.getRadius();
+        double diameter = radius * 2;
+        double diff = ((guess.overLapPercent/100) * diameter);
+        double offset = 300;
+        firstCircle.setLayoutX(initX - offset);
+        if (diff == 0) {
+            secondCircle.setLayoutX((initX - radius - 200) + (diameter - diff));
+        }else secondCircle.setLayoutX((initX - radius - offset) + (diameter - diff));
+        Random random = new Random();
+
+    }
+
+    public void newGuessMod(ActionEvent actionEvent) {
+        JFXDialogLayout content = new JFXDialogLayout();
+        //setting the heading for the dialog box
+        content.setHeading(new Text("Confirm Action"));
+        content.setBody(new Text("Are you sure you want to Close this and create new Mode?"));
+
+        //instantiating the dialog
+        JFXDialog dialog = new JFXDialog(stackPane, content, JFXDialog.DialogTransition.BOTTOM, false);
+        JFXButton confirmBtn = new JFXButton("Yes");
+        confirmBtn.setOnAction((evt) -> {
+            dialog.close();
+            save();
+            writeToContainer.getChildren().removeIf(node -> node instanceof EditableLabel);
+            observableList.removeAll(observableList);
+            selectionList.removeAll(selectionList);
+            circleRadiusSlider.setValue(250);
+            leftContainerPicker.setValue(Color.DARKORANGE);
+            rightContainerPicker.setValue(Color.LAWNGREEN);
+            fontColor.setDisable(true);
+            fontSize.setText("20");
+            fontSize.setDisable(true);
+            addButton.setText("Apply");
+            guessMod = true;
+            createGuess();
+        });
+        JFXButton cancelBtn = new JFXButton("No");
+        cancelBtn.setOnAction((evt) -> {
+            dialog.close();
+        });
+
+        //adding the button to dialog
+        content.setActions(confirmBtn, cancelBtn);
+        dialog.show();
+    }
+    private class Guess{
+        private double overLapPercent;
+        private String left;
+        private String middle;
+        private String right;
+
+        public Guess(double overLapPercent, String left, String middle, String right) {
+            this.overLapPercent = overLapPercent;
+            this.left = left;
+            this.middle = middle;
+            this.right = right;
+        }
+
+        public double getOverLapPercent() {
+            return overLapPercent;
+        }
+
+        public String getLeft() {
+            return left;
+        }
+
+        public String getMiddle() {
+            return middle;
+        }
+
+        public String getRight() {
+            return right;
+        }
+    }
 }
