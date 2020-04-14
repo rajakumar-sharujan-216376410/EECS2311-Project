@@ -8,6 +8,9 @@ public class Properties implements Serializable {
     private double x;
     private double y;
     private String fontColor;
+    private String leftColor;
+    private String rightColor;
+    private double sliderValue;
     private String fontName;
     private double fontSize;
 
@@ -18,6 +21,30 @@ public class Properties implements Serializable {
         this.fontColor = fontColor;
         this.fontName = fontName;
         this.fontSize = fontSize;
+    }
+
+    public String getLeftColor() {
+        return leftColor;
+    }
+
+    public void setLeftColor(String leftColor) {
+        this.leftColor = leftColor;
+    }
+
+    public String getRightColor() {
+        return rightColor;
+    }
+
+    public void setRightColor(String rightColor) {
+        this.rightColor = rightColor;
+    }
+
+    public double getSliderValue() {
+        return sliderValue;
+    }
+
+    public void setSliderValue(double sliderValue) {
+        this.sliderValue = sliderValue;
     }
 
     public String getText() {
@@ -52,4 +79,3 @@ public class Properties implements Serializable {
         this.description = description;
     }
 }
-

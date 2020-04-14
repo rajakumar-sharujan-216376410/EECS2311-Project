@@ -1,4 +1,6 @@
+
 package venn.diagram;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,11 +24,11 @@ public class VennDiagram extends Application {
         stage.getIcons().add(new Image(VennDiagram.class.getResourceAsStream("icon.png")));
         stage.setTitle("VennGram");
         stage.setScene(scene);
-        //stage.setResizable(false);
-        //stage.setMaximized(true);
-        //stage.setFullScreen(true);
+        stage.setMaximized(true);
+        stage.setFullScreen(true);
         stage.show();
     }
+
     /**
      * @param args the command line arguments
      */
@@ -35,3 +37,14 @@ public class VennDiagram extends Application {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
