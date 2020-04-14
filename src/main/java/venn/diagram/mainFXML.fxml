@@ -111,12 +111,12 @@
                               <Font name="Century Gothic" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="deleteBtn" minWidth="65.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #e05d06;" text="Remove " textFill="WHITE" wrapText="true">
+                        <Button fx:id="deleteBtn" minWidth="65.0" mnemonicParsing="false" onAction="#remove" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #e05d06;" text="Remove " textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Century Gothic" size="12.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#clearAllLabel" style="-fx-background-color: #e00202;" text="Remove All" textFill="WHITE">
+                        <Button fx:id="removeAll" mnemonicParsing="false" onAction="#clearAllLabel" style="-fx-background-color: #e00202;" text="Remove All" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic" size="13.0" />
                            </font>
@@ -188,15 +188,15 @@
             </VBox>
          </children>
       </VBox>
-      <StackPane fx:id="stackPane" prefHeight="658.0" prefWidth="635.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+      <StackPane fx:id="stackPane" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" StackPane.alignment="TOP_LEFT">
                <children>
-                  <MenuBar>
+                  <MenuBar VBox.vgrow="ALWAYS">
                     <menus>
                       <Menu mnemonicParsing="false" text="File">
                         <items>
-                          <MenuItem mnemonicParsing="false" onAction="#newProject" text="new project" />
+                          <MenuItem fx:id="newProjectV" mnemonicParsing="false" onAction="#newProject" text="new project" />
                               <MenuItem mnemonicParsing="false" onAction="#newGuessMod" text="New Guess Mode" />
                               <MenuItem mnemonicParsing="false" onAction="#openExistingProject" text="Open project" />
                               <MenuItem mnemonicParsing="false" onAction="#saveForEdit" text="save project" />
@@ -207,32 +207,34 @@
                           <items>
                             <MenuItem fx:id="undo" mnemonicParsing="false" onAction="#undo" text="Undo" />
                           </items>
+                           <items>
+                              <MenuItem fx:id="redo" mnemonicParsing="false" onAction="#redo" text="Redo" />
+                           </items>
                         </Menu>
                       <Menu mnemonicParsing="false" text="Download">
                         <items>
                           <MenuItem fx:id="donwloadAsPdf" mnemonicParsing="false" onAction="#savePDF" text="Download as pdf" />
-                              <MenuItem mnemonicParsing="false" onAction="#saveImage" text="Donwload as image" />
+                              <MenuItem mnemonicParsing="false" onAction="#saveImage" text="Download as image" />
                         </items>
                       </Menu>
                       <Menu mnemonicParsing="false" text="Help">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="About" />
+                          <MenuItem mnemonicParsing="false" text="About" onAction="#about"/>
                         </items>
                       </Menu>
                     </menus>
                   </MenuBar>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="256.0" text="VENN Diagram" textAlignment="CENTER">
+                  <Label fx:id="title" alignment="CENTER" prefHeight="33.0" prefWidth="709.0" text="VENN Diagram" textAlignment="CENTER">
                      <font>
                         <Font name="Century Gothic" size="27.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="writeToContainer" prefHeight="742.0" prefWidth="1035.0">
+                  <Pane fx:id="writeToContainer" prefHeight="742.0" prefWidth="1035.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Circle fx:id="firstCircle" blendMode="MULTIPLY" fill="#53acff" layoutX="620.0" layoutY="316.0" radius="250.0" stroke="#f7824f00" strokeType="INSIDE" />
                         <Circle fx:id="secondCircle" blendMode="MULTIPLY" fill="#ee9f1f" layoutX="517.0" layoutY="316.0" radius="250.0" stroke="#ffffff00" strokeType="INSIDE" />
                      </children>
                   </Pane>
-                  <AnchorPane prefHeight="132.0" prefWidth="635.0" />
                </children>
             </VBox>
          </children>
