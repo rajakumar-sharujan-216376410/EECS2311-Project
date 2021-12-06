@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1367.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="venn.diagram.mainFXMLController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="695.0" prefWidth="332.0" style="-fx-background-color: #212121;">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="697.0" prefWidth="282.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="55.0" prefWidth="287.0" text="Configurations" textAlignment="CENTER" textFill="#2247ff">
+                     <font>
+                        <Font name="Century Gothic" size="19.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="33.0" prefWidth="246.0" text="Container size" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox>
+                     <children>
+                        <AnchorPane prefHeight="29.0" prefWidth="282.0">
+                           <children>
+                              <JFXSlider fx:id="circleRadiusSlider" blockIncrement="5.0" layoutX="47.0" layoutY="7.0" prefHeight="16.0" prefWidth="200.0" />
+                              <Label layoutX="26.0" layoutY="6.0" text="min" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="247.0" layoutY="7.0" text="max" textFill="WHITE">
+                                 <font>
+                                    <Font name="Century Gothic" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <Separator opacity="0.1" prefWidth="200.0" style="-fx-background-color: #212121;">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Label prefHeight="37.0" prefWidth="229.0" text="Container color" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="282.0">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="133.0" text="Left Container" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                        <JFXColorPicker fx:id="leftContainerPicker" prefHeight="25.0" prefWidth="175.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="282.0">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="133.0" text="Right Container" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                        <JFXColorPicker fx:id="rightContainerPicker" prefHeight="25.0" prefWidth="175.0" />
+                     </children>
+                  </HBox>
+                  <Separator opacity="0.1" prefWidth="200.0" style="-fx-background-color: #212121;">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Label prefHeight="37.0" prefWidth="229.0" text="Text" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic" size="14.0" />
+                     </font>
+                  </Label>
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                    <buttons>
+                        <Button fx:id="addButton" minWidth="67.0" mnemonicParsing="false" onAction="#addTextField" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: white;" text="Add Text" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="deleteBtn" minWidth="65.0" mnemonicParsing="false" onAction="#remove" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #e05d06;" text="Remove " textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="Century Gothic" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="removeAll" mnemonicParsing="false" onAction="#clearAllLabel" style="-fx-background-color: #e00202;" text="Remove All" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </Button>
+                    </buttons>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </ButtonBar>
+                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="282.0" />
+                  <Separator opacity="0.1" prefWidth="200.0" style="-fx-background-color: #212121;">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Label prefHeight="37.0" prefWidth="229.0" text="Text Styling" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Century Gothic" size="14.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="282.0">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="133.0" text="Color" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                        <JFXColorPicker fx:id="fontColor" prefHeight="25.0" prefWidth="181.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="282.0">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="133.0" text="Font" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                        <JFXComboBox fx:id="fontdropdown" labelFloat="true" prefHeight="25.0" prefWidth="184.0" promptText="enter fontName family" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="37.0" prefWidth="282.0">
+                     <children>
+                        <Label prefHeight="16.0" prefWidth="133.0" text="Size" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </Label>
+                        <JFXTextField fx:id="fontSize" labelFloat="true" promptText="size" style="-fx-text-fill: white;" text="12">
+                           <font>
+                              <Font name="Century Gothic" size="13.0" />
+                           </font>
+                        </JFXTextField>
+                     </children>
+                  </HBox>
+                  <Separator opacity="0.1" prefWidth="200.0" style="-fx-background-color: #212121;" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <StackPane fx:id="stackPane" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;" StackPane.alignment="TOP_LEFT">
+               <children>
+                  <MenuBar VBox.vgrow="ALWAYS">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="File">
+                        <items>
+                          <MenuItem fx:id="newProjectV" mnemonicParsing="false" onAction="#newProject" text="new project" />
+                              <MenuItem mnemonicParsing="false" onAction="#newGuessMod" text="New Guess Mode" />
+                              <MenuItem mnemonicParsing="false" onAction="#openExistingProject" text="Open project" />
+                              <MenuItem mnemonicParsing="false" onAction="#saveForEdit" text="save project" />
+                              <MenuItem mnemonicParsing="false" onAction="#exit" text="Close application" />
+                        </items>
+                      </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                          <items>
+                            <MenuItem fx:id="undo" mnemonicParsing="false" onAction="#undo" text="Undo" />
+                          </items>
+                           <items>
+                              <MenuItem fx:id="redo" mnemonicParsing="false" onAction="#redo" text="Redo" />
+                           </items>
+                        </Menu>
+                      <Menu mnemonicParsing="false" text="Download">
+                        <items>
+                          <MenuItem fx:id="donwloadAsPdf" mnemonicParsing="false" onAction="#savePDF" text="Download as pdf" />
+                              <MenuItem mnemonicParsing="false" onAction="#saveImage" text="Download as image" />
+                        </items>
+                      </Menu>
+                      <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                          <MenuItem mnemonicParsing="false" text="About" onAction="#about"/>
+                        </items>
+                      </Menu>
+                    </menus>
+                  </MenuBar>
+                  <Label fx:id="title" alignment="CENTER" prefHeight="33.0" prefWidth="709.0" text="VENN Diagram" textAlignment="CENTER">
+                     <font>
+                        <Font name="Century Gothic" size="27.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="writeToContainer" prefHeight="742.0" prefWidth="1035.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Circle fx:id="firstCircle" blendMode="MULTIPLY" fill="#53acff" layoutX="620.0" layoutY="316.0" radius="250.0" stroke="#f7824f00" strokeType="INSIDE" />
+                        <Circle fx:id="secondCircle" blendMode="MULTIPLY" fill="#ee9f1f" layoutX="517.0" layoutY="316.0" radius="250.0" stroke="#ffffff00" strokeType="INSIDE" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
+</HBox>
