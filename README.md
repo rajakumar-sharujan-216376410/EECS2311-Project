@@ -3,7 +3,7 @@
 An application that displays a Venn diagram. Equipped with features that allow the user to adjust the container size/colour and the font size/colour. The ability to 
 input text, delete text and save work is also available. Inside the zip file is the application itself for the Venn Diagram app. 
 
-Requirements:  JDK Version - 1.8, Gradle 5
+Requirements:  JDK Version - 1.8 and above, Gradle 5
 
 Please check vF for files.
 
